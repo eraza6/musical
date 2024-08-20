@@ -1,0 +1,40 @@
+<div [class]="layoutService.currentBreakpoint()">
+  <header class="box-shadow">
+    <div class="container">
+      <div class="logo-container" routerLink="/home">
+        <img src="assets/images/logo.png" alt="logo" />
+        <h1>MUSICAL EVENTS</h1>
+      </div>
+      <div>
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Buscar..."
+          [formControl]="searchBarFormControl"
+        />
+      </div>
+      @if (authService.loggedIn()) {
+
+      <div class="buttons-container">
+        <button
+          mat-button
+          class="primary"
+          [routerLink]="authService.isAdministrator() ? '/admin' : '/customer'"
+        >
+          MENU
+        </button>
+        <button mat-button class="accent" (click)="authService.logout()">
+          CERRAR SESIÓN
+        </button>
+      </div>
+      } @else {
+      <div class="buttons-container">
+        <button mat-button class="primary" routerLink="/login">INGRESAR</button>
+        <button mat-button class="accent" routerLink="/register">
+          REGÍSTRATE
+        </button>
+      </div>
+      }
+    </div>
+  </header>
+</div>
